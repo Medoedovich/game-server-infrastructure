@@ -1,0 +1,14 @@
+services:
+  frps:
+    image: fatedier/frps:v0.69.1
+    container_name: system-frps
+    restart: unless-stopped
+
+    network_mode: host
+
+    volumes:
+      - ../frps.toml:/etc/frp/frps.toml:ro
+
+    command:
+      - -c
+      - /etc/frp/frps.toml
