@@ -1,0 +1,18 @@
+# Arma Reforger FRP proxies
+# Copy to infra/frp/confd/arma-reforger.toml
+
+[[proxies]]
+name = "arma-game"
+type = "udp"
+localIP = "127.0.0.1"
+localPort = 2001
+remotePort = 2001
+
+[[proxies]]
+name = "arma-query"
+type = "udp"
+localIP = "127.0.0.1"
+localPort = 17777
+remotePort = 17777
+
+# RCON (UDP 19999) is intentionally not exposed.

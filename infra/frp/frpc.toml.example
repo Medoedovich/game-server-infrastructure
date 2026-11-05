@@ -1,0 +1,15 @@
+# FRP client configuration
+# Runs on the home Linux server.
+
+serverAddr = "YOUR_PUBLIC_VPS_IP"
+serverPort = 7000
+
+# Game-specific proxy configurations.
+includes = ["/etc/frp/confd/*.toml"]
+
+[auth]
+method = "token"
+token = "REPLACE_WITH_STRONG_SECRET"
+
+[transport.tls]
+enable = true

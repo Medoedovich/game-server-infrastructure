@@ -1,0 +1,15 @@
+services:
+  frpc:
+    image: fatedier/frpc:v0.69.1
+    container_name: system-frpc
+    restart: unless-stopped
+
+    network_mode: host
+
+    volumes:
+      - ./frpc.toml:/etc/frp/frpc.toml:ro
+      - ./confd:/etc/frp/confd:ro
+
+    command:
+      - -c
+      - /etc/frp/frpc.toml

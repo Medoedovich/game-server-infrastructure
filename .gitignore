@@ -31,3 +31,9 @@ docker_generated.json
 *.tmp
 *.bak
 *.swp
+
+# Active FRP proxy configurations
+infra/frp/confd/*.toml
+
+# Game server persistent data
+games/*/data/

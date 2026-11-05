@@ -1,0 +1,26 @@
+services:
+  arma-reforger:
+    image: ghcr.io/acemod/arma-reforger:latest
+    platform: linux/amd64
+    container_name: arma-reforger
+    restart: unless-stopped
+
+    ports:
+      - "2001:2001/udp"
+      - "17777:17777/udp"
+      - "127.0.0.1:19999:19999/udp"
+
+    volumes:
+      - ./data/configs:/reforger/Configs
+      - ./data/profile:/home/profile
+      - ./data/workshop:/reforger/workshop
+      - ./data/addons:/reforger/addons
+
+    environment:
+      SERVER_PUBLIC_ADDRESS: ${SERVER_PUBLIC_ADDRESS:?Set SERVER_PUBLIC_ADDRESS}
+      GAME_NAME: ${GAME_NAME:?Set GAME_NAME}
+      GAME_MAX_PLAYERS: ${GAME_MAX_PLAYERS:-64}
+      RCON_PASSWORD: ${RCON_PASSWORD:?Set RCON_PASSWORD}
+      GAME_SCENARIO_ID: ${GAME_SCENARIO_ID:?Set GAME_SCENARIO_ID}
+      GAME_MODS_IDS_LIST: ${GAME_MODS_IDS_LIST:-}
+      GAME_PASSWORD: ${GAME_PASSWORD:-}

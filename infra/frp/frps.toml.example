@@ -1,0 +1,9 @@
+# FRP server configuration
+# Runs on a public VPS.
+
+bindAddr = "0.0.0.0"
+bindPort = 7000
+
+[auth]
+method = "token"
+token = "REPLACE_WITH_STRONG_SECRET"
