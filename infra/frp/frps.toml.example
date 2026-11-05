@@ -1,8 +1,28 @@
 # FRP server configuration
-# Runs on a public VPS.
+# Version: 0.69.1
 
 bindAddr = "0.0.0.0"
 bindPort = 7000
+
+# Only approved public service ports may be registered.
+# Portainer (9000) and Arma Reforger RCON (19999)
+# are intentionally excluded.
+#
+# allowPorts restricts port numbers, not protocols.
+# Configure firewall rules separately.
+
+allowPorts = [
+  { single = 80 },
+  { single = 443 },
+  { single = 2001 },
+  { single = 2302 },
+  { single = 8766 },
+  { single = 17777 },
+  { single = 27016 },
+  { single = 28001 },
+  { single = 28100 },
+  { single = 51821 }
+]
 
 [auth]
 method = "token"

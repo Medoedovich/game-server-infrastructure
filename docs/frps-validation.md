@@ -72,17 +72,70 @@ frps: the configuration file /etc/frp/frps.toml syntax is ok
 
 The test used a placeholder authentication token. No production credentials were required.
 
+## Port access policy validation
+
+**Status: Passed — isolated functional test.**
+
+The `allowPorts` policy was tested using FRP `v0.69.1` in an isolated Docker bridge network.
+
+### Test configuration
+
+The test FRP server allowed only UDP port `2001`. The client attempted to register two UDP proxies:
+
+| Proxy | Remote port | Expected | Actual |
+|---|---|---|---|
+| `allowed-game-port` | 2001 | Allowed | Registered successfully |
+| `denied-rcon-port` | 19999 | Denied | Rejected |
+
+Both configuration files passed their respective `verify` checks before the functional test.
+
+### Results
+
+The FRP client successfully authenticated with the test server.
+
+The allowed proxy reported:
+
+```text
+[allowed-game-port] start proxy success
+```
+
+The prohibited proxy reported:
+
+```text
+[denied-rcon-port] start error: acquire port 19999 error: port not allowed
+```
+
+The FRP server independently confirmed successful registration of the allowed proxy and rejection of the prohibited proxy.
+
+Neither test container published Docker ports on the host. Both containers and the dedicated test network were removed after validation.
+
+### Limitations
+
+This test confirms that FRP enforces `allowPorts` when registering UDP proxies.
+
+It does not establish:
+
+- Successful end-to-end transmission of game traffic.
+- Enforcement of the complete production port list.
+- Firewall behavior on the public VPS.
+- VPN-only access to administrative services.
+- Successful deployment of the updated policy on the production VPS.
+
+The production FRP configuration was not modified.
+
 ## Remaining validation
 
-Before marking the module production-ready:
+Before marking the FRP server module production-ready:
 
 1. Test a fresh deployment on a separate VPS.
-2. Confirm that the FRP server starts successfully.
-3. Verify authenticated client connectivity.
-4. Verify UDP proxy forwarding.
-5. Configure and test firewall rules.
-6. Evaluate restrictions on allowed remote ports.
-7. Verify behavior after container recreation and host reboot.
+2. Verify end-to-end UDP and TCP forwarding.
+3. Validate firewall rules on the public VPS.
+4. Test the complete approved port list.
+5. Implement and verify VPN-only access to Portainer and Arma Reforger RCON.
+6. Verify behavior after container recreation and host reboot.
+7. Document a safe migration procedure for existing deployments.
+
+**Important:** Applying the example `allowPorts` policy to an existing FRP server may prevent previously configured proxies from registering. Review all active proxies before deployment.
 
 ## Safety
 
