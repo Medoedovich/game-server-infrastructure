@@ -15,6 +15,7 @@ services:
       - ./data/profile:/home/profile
       - ./data/workshop:/reforger/workshop
       - ./data/addons:/reforger/addons
+      - steamcmd:/steamcmd
 
     environment:
       SERVER_PUBLIC_ADDRESS: ${SERVER_PUBLIC_ADDRESS:?Set SERVER_PUBLIC_ADDRESS}
@@ -24,3 +25,6 @@ services:
       GAME_SCENARIO_ID: ${GAME_SCENARIO_ID:?Set GAME_SCENARIO_ID}
       GAME_MODS_IDS_LIST: ${GAME_MODS_IDS_LIST:-}
       GAME_PASSWORD: ${GAME_PASSWORD:-}
+
+volumes:
+  steamcmd:

@@ -63,6 +63,12 @@ Game server files are stored under `data/`.
 
 This directory is excluded from Git and must be backed up separately.
 
+The Docker Compose configuration uses bind mounts under `data/` for game files and a named Docker volume (`steamcmd`) for SteamCMD data.
+
+The `data/` directory is excluded from Git. Both bind-mounted data and Docker volumes require an appropriate backup strategy.
+
+See [Arma Reforger validation](../../docs/arma-reforger-validation.md) for the current validation status and remaining tests.
+
 ## Troubleshooting
 
 If the server appears in the server browser but players cannot connect:
