@@ -1,0 +1,23 @@
+# Administrative WireGuard VPN — Home Linux server
+#
+# Example configuration only.
+# Replace placeholders before deployment.
+#
+# Interface: wg-admin
+# VPN address: 10.9.0.2/24
+#
+# This configuration uses split tunneling.
+# It must not replace the system default route.
+#
+# Keep production private keys out of Git.
+
+[Interface]
+Address = 10.9.0.2/24
+PrivateKey = REPLACE_WITH_HOME_SERVER_PRIVATE_KEY
+
+# Public VPS
+[Peer]
+PublicKey = REPLACE_WITH_VPS_PUBLIC_KEY
+Endpoint = 45.133.247.107:51822
+AllowedIPs = 10.9.0.0/24
+PersistentKeepalive = 25

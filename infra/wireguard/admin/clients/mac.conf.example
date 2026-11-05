@@ -1,0 +1,21 @@
+# Administrative WireGuard VPN — macOS
+#
+# Example configuration only.
+# Import into the WireGuard macOS application
+# after replacing the key placeholders.
+#
+# VPN address: 10.9.0.3/32
+# Routing mode: Split tunnel
+#
+# Keep production private keys out of Git.
+
+[Interface]
+Address = 10.9.0.3/32
+PrivateKey = REPLACE_WITH_MAC_PRIVATE_KEY
+
+# Public VPS
+[Peer]
+PublicKey = REPLACE_WITH_VPS_PUBLIC_KEY
+Endpoint = 45.133.247.107:51822
+AllowedIPs = 10.9.0.0/24
+PersistentKeepalive = 25

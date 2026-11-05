@@ -1,0 +1,25 @@
+# Administrative WireGuard VPN — VPS
+#
+# Example configuration only. Do not deploy without replacing
+# placeholders and validating firewall/routing requirements.
+#
+# Interface: wg-admin
+# VPN subnet: 10.9.0.0/24
+# UDP port: 51822
+#
+# Keep production private keys out of Git.
+
+[Interface]
+Address = 10.9.0.1/24
+ListenPort = 51822
+PrivateKey = REPLACE_WITH_VPS_PRIVATE_KEY
+
+# Home Linux server
+[Peer]
+PublicKey = REPLACE_WITH_HOME_SERVER_PUBLIC_KEY
+AllowedIPs = 10.9.0.2/32
+
+# Administrator Mac
+[Peer]
+PublicKey = REPLACE_WITH_MAC_PUBLIC_KEY
+AllowedIPs = 10.9.0.3/32
