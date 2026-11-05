@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Local FRP configurations
+frpc.toml
+frps.toml
+!frpc.toml.example
+!frps.toml.example
+
+# Generated game server configurations
+docker_generated.json
+
+# Runtime data
+**/logs/
+**/profile/
+**/workshop/
+**/addons/
+**/backups/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
