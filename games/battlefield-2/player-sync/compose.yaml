@@ -1,0 +1,35 @@
+services:
+  player-sync:
+    user: "65534:65534"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - master-data:/data:ro
+    networks:
+      - bf2-network
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  master-data:
+    external: true
+    name: bf2-test_master-data
+
+networks:
+  bf2-network:
+    external: true
+    name: bf2-test_bf2-network

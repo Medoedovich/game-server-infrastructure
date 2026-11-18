@@ -37,3 +37,7 @@ infra/frp/confd/*.toml
 
 # Game server persistent data
 games/*/data/
+
+# Python runtime files
+__pycache__/
+*.pyc
