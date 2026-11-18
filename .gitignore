@@ -41,3 +41,7 @@ games/*/data/
 # Python runtime files
 __pycache__/
 *.pyc
+
+# Battlefield 2 runtime configuration and dependencies
+/games/battlefield-2/config/bf2/BF2StatisticsConfig.py
+/games/battlefield-2/sources/
